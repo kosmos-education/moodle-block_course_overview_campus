@@ -492,7 +492,7 @@ class block_course_overview_campus extends block_base {
                     if (count($teacherroles) > 0) {
 
                         // Get all user name fields for SQL query in a proper way.
-                        $allnames = get_all_user_name_fields(true, 'u');
+                        $allnames = \core_user\fields::for_name()->get_sql('u', false, '', '', false)->selects;
                         $teacherfields = 'ra.id AS raid, u.id, '.$allnames.', r.sortorder'; // Moodle would complain about two columns called id with a "Did you remember to make the first column something unique in your call to get_records? Duplicate value 'xxx' found in column 'id'." debug message. That's why we alias one column to a name different than id.
                         $teachersortfields = 'u.lastname, u.firstname';
 
